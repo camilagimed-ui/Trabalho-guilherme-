@@ -1,4 +1,3 @@
-
 '--------------------------------------------------PROJETO DO PETSHOP------------------------------------------------'
 
 usuario = [] #[0] é o nome e [1] é a senha [2] é o tipo 
@@ -41,7 +40,25 @@ while True:
                 idade = int(input('idade: '))
 
             else:
-                break    
+                for n in usuario:
+                    if nome == n[0]:
+                        print('Esse nome ja exite!!!Tente outro nome!!!')
+                        nome = input('nome: ')
+                    
+                else:
+                    usuario.append([nome , senha , tipo , idade , nomePet])  
+                    print(f'Parabens {nome}, voce foi cadastrado com sucesso!!')
+                    break
+    elif opcao == 2:
+        print('faça o seu login!!')
+        nome = input('digite seu nome: ')
+        senha = input('digite sua senha: ')
+        logado = 0
+        for i in usuario:
+            if i[0] == nome and i[1] == senha:
+                logado = 1
 
-        usuario.append([nome , senha , tipo , idade , nomePet])  
-        print(f'Parabens {nome}, voce foi cadastrado com sucesso!!')
+        if logado == 0:
+            print('usuario nao encontrado!!!login invalido!!!')
+        else:
+            print('login efetuado com sucesso!!')
