@@ -1,3 +1,4 @@
+
 '--------------------------------------------------PROJETO DO PETSHOP------------------------------------------------'
 
 usuario = [] #[0] é o nome e [1] é a senha [2] é o tipo 
@@ -13,6 +14,8 @@ while True:
 
     if opcao == 0:
         break
+    elif opcao != 1 and opcao != 2 and opcao != 0:
+        print('digite uma opcao valida!!')
 
     elif opcao == 1:
         print('efetue seu cadastro!')
@@ -42,5 +45,3 @@ while True:
 
         usuario.append([nome , senha , tipo , idade , nomePet])  
         print(f'Parabens {nome}, voce foi cadastrado com sucesso!!')
-
-                
