@@ -1,7 +1,9 @@
+
 '--------------------------------------------------PROJETO DO PETSHOP------------------------------------------------'
 
-usuario = [] #[0] é o nome e [1] é a senha [2] é o tipo 
-
+usuario = [] #[0] é o nome e [1] é a senha 
+produtos = [['ração','$150.00'] ,['shampoo' , '$30.00'] , ['condicionador' , '$30.00'],['brinquedo' , '$20.00'] , ['coleira' , '$20.00'],['casinha','$80.00'] , ['caminha' ,'$100.00'] , ['caixa de trasnporte' , '$210.00'] , ['escova' , '$25.00'] , ['kit de perfume' , '$150.00']]
+# [0] é o produto e o [1] é o valor
 while True:
     print('Bem vindo ao Pet e Cia!!!')
     print('Escolha uma das opções abaixo: ')
@@ -13,6 +15,7 @@ while True:
 
     if opcao == 0:
         break
+
     elif opcao != 1 and opcao != 2 and opcao != 0:
         print('digite uma opcao valida!!')
 
@@ -40,16 +43,18 @@ while True:
                 idade = int(input('idade: '))
 
             else:
+                possuiNome = 0
                 for n in usuario:
                     if nome == n[0]:
                         print('Esse nome ja exite!!!Tente outro nome!!!')
+                        possuiNome = 1
                         nome = input('nome: ')
                     
-                else:
+                if possuiNome == 0:
                     usuario.append([nome , senha , tipo , idade , nomePet])  
                     print(f'Parabens {nome}, voce foi cadastrado com sucesso!!')
                     break
-    elif opcao == 2:
+    if opcao == 2:
         print('faça o seu login!!')
         nome = input('digite seu nome: ')
         senha = input('digite sua senha: ')
@@ -61,4 +66,42 @@ while True:
         if logado == 0:
             print('usuario nao encontrado!!!login invalido!!!')
         else:
-            print('login efetuado com sucesso!!')
+            print(f'login efetuado com sucesso!!Bem vindo {nome}!!')
+
+    elif tipo == 'cliente':
+        print('escolha a opçao que deseja realizar!!!')
+
+        while tipo == 'cliente':
+            print('1 - realizar compra')
+            print('2 - realizar agendamento')
+            print('0 - sair')
+            opcao = int(input('digite que opcao deseja realizar: '))
+            if opcao == 0:
+                break
+            elif opcao == 1:
+                valort = 0
+                print('Realize sua compra agora mesmo: ')
+                for p in range(len(produtos)):
+                    print(f'Produto: {produtos[p][0]} | Valor: {produtos[p][1]}')
+
+                quantidade = int(input('digite a quantidade de produtos que deseja comprar: '))
+
+                for q in range(quantidade):
+                    compra = float(input('digite o valor do produto que deseja levar:'))
+                    valort = valort + compra
+                
+                print(f'o valor total da compra foi : {valort}')
+                pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
+                if pagamento < 0:
+                    print('valor invalido!!digite novamente!!!')
+                    pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
+
+                elif pagamento < valort:
+                    print('valor invalido!!! digite novamente!!')
+                    pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
+
+                elif pagamento > valort:
+                    print('valor invalido!!! digite novamente!!')
+                    pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
+                else:
+                    print('pagamento realizado com sucesso!!')
