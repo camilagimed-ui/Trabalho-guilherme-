@@ -1,9 +1,13 @@
 
-'--------------------------------------------------PROJETO DO PETSHOP------------------------------------------------'
-
 usuario = [] #[0] é o nome e [1] é a senha 
 produtos = [['ração','$150.00'] ,['shampoo' , '$30.00'] , ['condicionador' , '$30.00'],['brinquedo' , '$20.00'] , ['coleira' , '$20.00'],['casinha','$80.00'] , ['caminha' ,'$100.00'] , ['caixa de trasnporte' , '$210.00'] , ['escova' , '$25.00'] , ['kit de perfume' , '$150.00']]
 # [0] é o produto e o [1] é o valor
+HorariosD = ['10h' , '12h' , '14h' , '16h' , '18h' ]
+contador1 = 0
+contador2 = 0
+contador3 = 0
+contador4 = 0
+contador5 = 0
 while True:
     print('Bem vindo ao Pet e Cia!!!')
     print('Escolha uma das opções abaixo: ')
@@ -74,6 +78,7 @@ while True:
         while tipo == 'cliente':
             print('1 - realizar compra')
             print('2 - realizar agendamento')
+            print('3 - atendimento ao pet')
             print('0 - sair')
             opcao = int(input('digite que opcao deseja realizar: '))
             if opcao == 0:
@@ -105,3 +110,55 @@ while True:
                     pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
                 else:
                     print('pagamento realizado com sucesso!!')
+
+            elif opcao == 2:
+                print('realize o seu agendamento')
+
+                for h in range(len(HorariosD)):
+                    print(f'horarios disponivies {HorariosD[h]}')
+
+                while True:
+                    horario = input('digite qual horario deseja escolher: ')
+                    if horario not in HorariosD:
+                        print('horario invalido!!! digite novamente')
+                        horario = input('digite qual horario deseja escolher: ')
+
+                    if horario == '10h':
+                        if contador1 < 3:
+                            contador1 += 1
+                            print('horario marcado com sucesso!!')
+                            break
+                    else:
+                        print('esse horaio esta cheio!!')
+        
+                    if horario == '12h':
+                        if contador2 < 3:
+                            contador2 += 1
+                        print('horario marcado com sucesso!!')
+                        break
+                    else:
+                        print('horario cheio!!')
+                    
+                    if horario == '14h':
+                        if contador3 < 3:
+                            contador3 += 1
+                        print('horario marcado com sucesso!!')
+                        break
+                    else:
+                        print('horario cheio!!')
+                        
+                    if horario == '16h':
+                        if contador4 < 3:
+                            contador4 += 1
+                        print('horario marcado com sucesso!!')
+                        break
+                    else:
+                        print('horaio cheio!!!')
+                        
+                    if horario == '18h':
+                        if contador5 < 3:
+                            contador5 += 1
+                        print('horaio marcado com sucesso!!')
+                        break
+                    else:
+                        print('horario cheio!!')
