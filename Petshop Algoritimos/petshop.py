@@ -1,4 +1,7 @@
 
+
+'--------------------------------------------------PROJETO DO PETSHOP------------------------------------------------'
+
 usuario = [] #[0] é o nome e [1] é a senha 
 produtos = [['ração','$150.00'] ,['shampoo' , '$30.00'] , ['condicionador' , '$30.00'],['brinquedo' , '$20.00'] , ['coleira' , '$20.00'],['casinha','$80.00'] , ['caminha' ,'$100.00'] , ['caixa de trasnporte' , '$210.00'] , ['escova' , '$25.00'] , ['kit de perfume' , '$150.00']]
 # [0] é o produto e o [1] é o valor
@@ -8,6 +11,7 @@ contador2 = 0
 contador3 = 0
 contador4 = 0
 contador5 = 0
+atendimentoP = [['banho , $70'] , ['tosa , %40'] , ['banho e tosa , $100']]
 while True:
     print('Bem vindo ao Pet e Cia!!!')
     print('Escolha uma das opções abaixo: ')
@@ -72,8 +76,8 @@ while True:
         else:
             print(f'login efetuado com sucesso!!Bem vindo {nome}!!')
 
-    elif tipo == 'cliente':
-        print('escolha a opçao que deseja realizar!!!')
+            if  tipo == 'cliente':
+                print('escolha a opçao que deseja realizar!!!')
 
         while tipo == 'cliente':
             print('1 - realizar compra')
@@ -97,17 +101,13 @@ while True:
                 
                 print(f'o valor total da compra foi : {valort}')
                 pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
-                if pagamento < 0:
+                while pagamento < 0 or pagamento < valort:
                     print('valor invalido!!digite novamente!!!')
                     pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
 
-                elif pagamento < valort:
-                    print('valor invalido!!! digite novamente!!')
-                    pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
-
-                elif pagamento > valort:
-                    print('valor invalido!!! digite novamente!!')
-                    pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
+                if pagamento > valort:
+                    troco = pagamento - valort
+                    print(f'Compra concluida com sucesso!! seu troco é: {troco}')
                 else:
                     print('pagamento realizado com sucesso!!')
 
@@ -128,37 +128,62 @@ while True:
                             contador1 += 1
                             print('horario marcado com sucesso!!')
                             break
-                    else:
-                        print('esse horaio esta cheio!!')
-        
+                        else:
+                            print('esse horaio esta cheio!!')
+                    
+
                     if horario == '12h':
                         if contador2 < 3:
                             contador2 += 1
-                        print('horario marcado com sucesso!!')
-                        break
-                    else:
-                        print('horario cheio!!')
+                            print('horario marcado com sucesso!!')
+                            break 
+                        else:
+                            print('horario cheio!!')
                     
                     if horario == '14h':
                         if contador3 < 3:
                             contador3 += 1
-                        print('horario marcado com sucesso!!')
-                        break
-                    else:
-                        print('horario cheio!!')
+                            print('horario marcado com sucesso!!')
+                            break
+                        else:
+                            print('horario cheio!!')
                         
                     if horario == '16h':
                         if contador4 < 3:
                             contador4 += 1
-                        print('horario marcado com sucesso!!')
-                        break
-                    else:
-                        print('horaio cheio!!!')
+                            print('horario marcado com sucesso!!')
+                            break
+                        else:
+                            print('horaio cheio!!!')
                         
                     if horario == '18h':
                         if contador5 < 3:
                             contador5 += 1
-                        print('horaio marcado com sucesso!!')
-                        break
+                            print('horaio marcado com sucesso!!')
+                            break
+                        else:
+                            print('horario cheio!!')
+            elif opcao == 3:
+                print('Bem vindo ao atendimento ao pet!!! \n escolha o que deseja!')
+                for a in range(len(atendimentoP)):
+                    print(f'Atendimento: {atendimentoP[a][0]} | Valor: {atendimentoP[a][1]}')
+                atendimento = input('digite quantos atendimentos voce deseja realizar no seu pet: ')
+
+                for i in range(atendimento):
+
+                    print('digite o valor do atendimento que deseja realizar: ')
+                    valorA = float(input('digite o valor:'))
+                    valorTA += valorA
+                    print(f'o valor total da sua compra foi de {valorTA}')
+
+                pagamentoA = float(input('digite a quantia que voce vai dar: '))
+
+                while pagamentoA < 0 or pagamentoA < valorTA:
+                    print('valor invalido!Digite novamente!!')
+                    pagamentoA =  float(input('digite a quantia que voce vai dar: '))
+
+                    if pagamentoA > valorTA:
+                        trocoA = pagamentoA - valorTA
+                        print(f'compra concluida com sucesso!! seu troco foi de {trocoA}')
                     else:
-                        print('horario cheio!!')
+                        print('pagamento realizado com sucesso!!')
