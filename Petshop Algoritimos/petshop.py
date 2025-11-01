@@ -1,9 +1,8 @@
-
-
 usuario = [] #[0] é o nome e [1] é a senha 
 produtos = [['ração','$150 '] ,['shampoo' , '$30'] , ['condicionador' , '$30'],['brinquedo' , '$20'] , ['coleira' , '$20'],['casinha','$80'] , ['caminha' ,'$100'] , ['caixa de trasnporte' , '$210'] , ['escova' , '$25'] , ['kit de perfume' , '$150']]
 quantidadeP = [['ração' , 30] , ['shampoo' , 30] , ['condicionador' ,  30] , ['brinquedo' , 30] , ['coleira' , 30] , ['casinha' , 30] , ['caminha' , 30] , ['caixa de trasnporte' , 30] , ['escova' , 30] , ['kit de perfume', 30]]
 # [0] é o produto e o [1] é o valor
+#lembrar de deixar o valor como numero
 HorariosD = ['10h' , '12h' , '14h' , '16h' , '18h' ]
 servicos = []
 contador1 = 0
@@ -34,14 +33,14 @@ while True:
         nome = input('nome: ')
         senha = input('senha: ')
         senha2 = input('confirme sua senha: ')
-        tipo = input('digite se voce é administrador ou cliente: ')
-        idade = int(input('idade: ')) #lembrar de perguntar a guilher como faço para aceitar apenas numeros
+        tipo = input('digite se voce é administrador ou cliente: ').lower()
+        idade = int(input('idade: ')) 
         nomePet = input('digite o nome do seu pet: ')
 
         while True:
             if tipo != 'administrador' and tipo != 'cliente':
                 print('tipo invalido,digite o tipo novamente!!')
-                tipo = input('digite se voce é administrador ou cliente: ')
+                tipo = input('digite se voce é administrador ou cliente: ').lower()
 
             elif senha != senha2:
                 print('tem certeza que digitou as duas senhas iguais? Tente novamente')
@@ -103,9 +102,10 @@ while True:
                         
                         for p in range(len(produtos)):
                                 print(f'Produto: {produtos[p][0]} | Valor: {produtos[p][1]}')
-                        quantidadeMercadoria = int(input('digite a quantidade de produtos que deseja levar: '))
+
+                        quantidadeMercadoria = int(input('digite a quantidade de Mercadoria que deseja levar: '))
                         
-                        if quantidadeP[2] <= 0 and quantidadeP[2] <= quantidadeMercadoria:
+                        if quantidadeP[2] <= 0 and quantidadeP[2] <= quantidadeMercadoria: #ta dando erro na linha
                                 print('quantidae de mercadoria zerada!\nTente outra mercadoria!!')
 
                         for n in range(len(quantidadeP)):
@@ -120,7 +120,7 @@ while True:
                                     saldoFinal = quantidadeP[i][2] - qtd
                                     quantidadeP[i][2] = saldoFinal
                                     
-                        for q in range(quantidade):
+                        for q in range(quantidade): #se o usuario digita um valor que nao existe na lista pedir para ele colocar dnv
                             compra = float(input('digite o valor do produto que deseja levar:'))
                             valort = valort + compra
                         
@@ -200,7 +200,7 @@ while True:
                             
                             print('digite o valor do atendimento que deseja realizar: ')
                             compra = float(input('digite o valor do produto que deseja levar:'))
-                            valort += compra
+                            valort += compra #perguntar a guilherme como fazer para o usuario digitar apenas numeros da lista
 
                         print(f'o valor total da sua compra foi de {valort}')
 
@@ -210,11 +210,11 @@ while True:
                             print('valor invalido!Digite novamente!!')
                             pagamentoA =  float(input('digite a quantia que voce vai dar: '))
 
-                            if pagamentoA > valort:
-                                trocoA = pagamentoA - valort
-                                print(f'compra concluida com sucesso!! seu troco foi de {trocoA}')
-                            else:
-                                print('pagamento realizado com sucesso!!')
+                        if pagamentoA > valort:
+                            trocoA = pagamentoA - valort
+                            print(f'compra concluida com sucesso!! seu troco foi de {trocoA}')
+                        else:
+                             print('pagamento realizado com sucesso!!')
                     elif opcao == 4:
                         print('deixe sua avaliação e no que seria possivel a gente melhorar!')
                         Av = input('deixe sua a avaliação aqui: ')
@@ -223,73 +223,4 @@ while True:
                         print('avaliação enviada com sucesso!')
 
 
-            if tipo == 'administrador':
-                print('olá,bem vindo a parte da administração do pet e cia!')
-                while True:
-                    print("Escolha uma das seguintes opções para prosseguir:")
-                    print("1-Gerenciamente de Serviços")
-                    print("2-Gerenciameto de Produtos")
-                    print("3-Sair")
-                    opcao = input("Digite uma das opções para continuar: ")
-                    if opcao == "3":
-                        break
-
-                    elif opcao == "1":
-                        while True:
-                            print("---------GERENCIADOR DE SERVIÇOS------------")
-                            print("Escolha uma das seguintes opções para prosseguir:")
-                            print("A-Cadrastrar Serviço")
-                            print("B-Buscar/Listar Serviços")
-                            print("C-Atualizar Serviço")
-                            print("D-Remover Serviço")
-                            print("E-Nenhuma das opções acima")
-                            opcao_servicos = input("Escolha uma das seguintes opções para prosseguir:")
-                            if opcao_servicos == "E":
-                                break
-
-                            elif opcao_servicos == "A":
-                                print("---------NOVO SERVIÇO------------")
-                                nomeServico = input("Digite o nome do novo serviço:  ")
-                                preco = float(input("Digite o valor do novo serviço R$: "))
-                                servicos.append([nomeServico, preco])
-                                print(f"Produto {nomeServico} - R$:{preco} Cadastrado com sucesso.")
-
-                            elif opcao_servicos == "B":
-                                print("---------LISTA DE SERVIÇOS------------")
-                                for s in servicos:
-                                    print(f"Serviço: {s[0]} | Preço: {s[1]}")
-
-                            elif opcao_servicos == "C":
-                                print("---------ATUALIZAR LISTA DE SERVIÇOS------------")
-                                for indice in range(len(servicos)):
-                                    print(f"Código {indice} - Serviços {servicos[indice][0]}")
-
-                                indice = int(input("Digite o indice que você deseja atualizar: "))
-                                while indice < 0 or indice >= (len(servicos)):
-                                    print("Indice Inválido.Tente novamente!")
-                                    indice = int(input("Digite o indice que você deseja atualizar: "))
-
-                                print(f"Servico Atual: {servicos[indice][0]}")
-                                novo_nome = input("Digite o nome do novo serviço: ")
-                                novo_preco = float(input("Digite o novo preço do serviço: "))
-
-                                novaSublistaServicos = [novo_nome, novo_preco]
-                                servicos[indice] = novaSublistaServicos
-                                print("Serviço atualizado com sucesso!!")
-
-                            elif opcao_servicos == "D":
-                                print("---------REMOVER SERVIÇOS------------")
-                                for indice in range(len(servicos)):
-                                    print(f"Código {indice} - Serviços {servicos[indice][0]}")
-
-                                indice = int(input("Digite o indice que você deseja remover: "))
-                                while indice < 0 or indice >= (len(servicos)):
-                                    print("Indice Inválido.Tente novamente!")
-                                    indice = int(input("Digite o indice que voc~e deseja remover: "))
-
-                                    servicos.remove(servicos[indice])
-
-                            else:
-                                print("Erro.Escolha uma opção válida!")
-
-                            print("---------------------------------")
+           
