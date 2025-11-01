@@ -1,18 +1,21 @@
-usuario = [] #[0] é o nome e [1] é a senha 
-produtos = [['ração','$150 '] ,['shampoo' , '$30'] , ['condicionador' , '$30'],['brinquedo' , '$20'] , ['coleira' , '$20'],['casinha','$80'] , ['caminha' ,'$100'] , ['caixa de trasnporte' , '$210'] , ['escova' , '$25'] , ['kit de perfume' , '$150']]
-quantidadeP = [['ração' , 30] , ['shampoo' , 30] , ['condicionador' ,  30] , ['brinquedo' , 30] , ['coleira' , 30] , ['casinha' , 30] , ['caminha' , 30] , ['caixa de trasnporte' , 30] , ['escova' , 30] , ['kit de perfume', 30]]
-# [0] é o produto e o [1] é o valor
-#lembrar de deixar o valor como numero
-HorariosD = ['10h' , '12h' , '14h' , '16h' , '18h' ]
+'--------------------------------------------------PROJETO DO PETSHOP------------------------------------------------'
+
+usuario = []  # [0] é o nome e [1] é a senha
+produtos = [['ração',150 , 70] ,['shampoo' , 30 , 70] , ['condicionador' , 30 , 70],['brinquedo' , 20 , 70] , ['coleira' , 20 ,70],['casinha',80, 70] , ['caminha' ,100, 70] , ['caixa de transporte' , 210 ,70] , ['escova' , 25 , 70] , ['kit de perfume' , 150 , 70]]
+
+#[0] produto [1] valor [2] estoque
+
+HorariosD = ['10h', '12h', '14h', '16h', '18h']
 servicos = []
 contador1 = 0
 contador2 = 0
 contador3 = 0
 contador4 = 0
 contador5 = 0
-atendimentoP = [['banho', '$70'] , ['tosa' , '$40'] , ['banho e tosa' ,'$100'] , ['consulta' , '$120']]
+atendimentoP = [['banho', '$70'], ['tosa', '$40'], ['banho e tosa', '$100'], ['consulta', '$120']]
 avalicao = []
 valort = 0
+
 while True:
     print('Bem vindo ao Pet e Cia!!!')
     print('Escolha uma das opções abaixo: ')
@@ -34,7 +37,7 @@ while True:
         senha = input('senha: ')
         senha2 = input('confirme sua senha: ')
         tipo = input('digite se voce é administrador ou cliente: ').lower()
-        idade = int(input('idade: ')) 
+        idade = int(input('idade: '))
         nomePet = input('digite o nome do seu pet: ')
 
         while True:
@@ -58,11 +61,12 @@ while True:
                         print('Esse nome ja exite!!!Tente outro nome!!!')
                         possuiNome = 1
                         nome = input('nome: ')
-                    
+
                 if possuiNome == 0:
-                    usuario.append([nome , senha , tipo , idade , nomePet])  
+                    usuario.append([nome, senha, tipo, idade, nomePet])
                     print(f'Parabens {nome}, voce foi cadastrado com sucesso!!')
                     break
+
     if opcao == 2:
         print('faça o seu login!!')
         nome = input('digite seu nome: ')
@@ -77,7 +81,7 @@ while True:
         else:
             print(f'login efetuado com sucesso!!Bem vindo {nome}!!')
 
-            if  tipo == 'cliente':
+            if tipo == 'cliente':
                 print('escolha a opçao que deseja realizar!!!')
 
                 while tipo == 'cliente':
@@ -87,55 +91,69 @@ while True:
                     print('4 - avaliação do produto ou do atendimento')
                     print('0 - sair')
                     opcao = int(input('digite que opcao deseja realizar: '))
+
                     if opcao == 0:
                         break
+
                     elif opcao != 0 and opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4:
                         print('opcao invalida digite novamente')
                         opcao = int(input('digite que opcao deseja realizar: '))
+
                     elif opcao == 1:
-                        valort = 0
-                        print('Realize sua compra agora mesmo: ')
-                        for p in range(len(produtos)):
-                            print(f'Produto: {produtos[p][0]} | Valor: {produtos[p][1]}')
+                        print('Realize sua compra agora mesmo!')
+                        for i in range(len(produtos)):
+                            print(f'produtos | {produtos[i][0]} | valor | ${produtos[i][1]} ')
 
-                        quantidade = int(input('digite a quantidade de produtos que deseja comprar: '))
-                        
-                        for p in range(len(produtos)):
-                                print(f'Produto: {produtos[p][0]} | Valor: {produtos[p][1]}')
+                        while True:
+                            qtd = int(input('Digite a quantidade de produtos que deseja comprar: '))
+                            while qtd <= 0 or qtd > len(produtos):
+                                print('Quantidade inválida de produto! Digite novamente!')
+                                qtd = int(input('Digite a quantidade de produtos que deseja comprar: '))
 
-                        quantidadeMercadoria = int(input('digite a quantidade de Mercadoria que deseja levar: '))
-                        
-                        if quantidadeP[2] <= 0 and quantidadeP[2] <= quantidadeMercadoria: #ta dando erro na linha
-                                print('quantidae de mercadoria zerada!\nTente outra mercadoria!!')
+                            valorT = 0
+                            q = 0  # apenas para controlar a quantidade de produtos que o cliente quer
 
-                        for n in range(len(quantidadeP)):
-                                print(f'numero do produto: {quantidadeP[n][0]} | nome do produto: {quantidadeP[n][1]}')
+                            while q < qtd:
+                                produtoC = input(f'Digite o nome do produto número {q+1} que deseja comprar: ')
+                                achouP = 0
 
-                        numeroDoProduto = int(input('digite o numero do produto que voce escolheu: '))
+                                for i in range(len(produtos)):
+                                    if produtoC.lower() == produtos[i][0].lower():
+                                        print(f'Produto {produtos[i][0]} | Valor: ${produtos[i][1]} cada')
+                                        achouP = 1
 
+                                        if produtos[i][2] == 0:
+                                            print('Produto esgotado!')
+                                            break
 
-                        for i in range(len(quantidadeP)):
-                                if quantidadeP [i][0] == numeroDoProduto:
-                                    qtd = quantidadeMercadoria
-                                    saldoFinal = quantidadeP[i][2] - qtd
-                                    quantidadeP[i][2] = saldoFinal
-                                    
-                        for q in range(quantidade): #se o usuario digita um valor que nao existe na lista pedir para ele colocar dnv
-                            compra = float(input('digite o valor do produto que deseja levar:'))
-                            valort = valort + compra
-                        
-                        print(f'o valor total da compra foi : {valort}')
-                        pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
-                        while pagamento < 0 or pagamento < valort:
-                            print('valor invalido!!digite novamente!!!')
-                            pagamento = float(input('insira quanto de dinheiro voce vai dar:'))
+                                        qProduto = int(input('Digite a quantidade desse produto que deseja levar: '))
 
-                        if pagamento > valort:
-                            troco = pagamento - valort
-                            print(f'Compra concluida com sucesso!! seu troco é: {troco}')
-                        else:
-                            print('pagamento realizado com sucesso!!')
+                                        while qProduto <= 0:
+                                            print('Quantidade inválida. Digite novamente.')
+                                            qProduto = int(input('Digite a quantidade desse produto que deseja comprar: '))
 
+                                        if qProduto > produtos[i][2]:
+                                            print(f'Estoque insuficiente! Só há {produtos[i][2]} unidades disponíveis.')
+                                        else:
+                                            produtos[i][2] = produtos[i][2] - qProduto  # controle de estoque
+                                            valorT = valorT + produtos[i][1] * qProduto
+                                            q = q + 1  # controle de quantidade de produtos que o cliente quis comprar
+                                            print(f'Você comprou {qProduto} {produtos[i][0]}')
+                                        break
+
+                                if achouP == 0:
+                                    print('Produto não encontrado! Digite novamente.')
+
+                            pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
+                            while pagamento < 0 or pagamento < valorT:
+                                print('Valor inválido! Digite novamente!')
+                                pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
+
+                            if pagamento > valorT:
+                                troco = pagamento - valorT
+                                print(f'Compra concluída com sucesso! Seu troco é: {troco}')
+                            else:
+                                print('Pagamento realizado com sucesso!Obrigada por realizar sua compra no Pet e Cia!')
                     elif opcao == 2:
                         print('realize o seu agendamento')
 
@@ -221,6 +239,10 @@ while True:
                         avalicao.append(Av)
                         print(avalicao)
                         print('avaliação enviada com sucesso!')
+            if tipo == 'administrador':
 
+                while tipo == 'administrador':
+
+           
 
            
