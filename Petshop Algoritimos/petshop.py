@@ -1,9 +1,14 @@
+
+
+           
+
+           
 '--------------------------------------------------PROJETO DO PETSHOP------------------------------------------------'
 
 usuario = []  # [0] é o nome e [1] é a senha
-produtos = [['ração',150 , 70] ,['shampoo' , 30 , 70] , ['condicionador' , 30 , 70],['brinquedo' , 20 , 70] , ['coleira' , 20 ,70],['casinha',80, 70] , ['caminha' ,100, 70] , ['caixa de transporte' , 210 ,70] , ['escova' , 25 , 70] , ['kit de perfume' , 150 , 70]]
+produtos = [['ração',150 , 70] ,['shampoo' , 30 , 70] , ['condicionador' , 30 , 70],['brinquedo' , 20 , 70] , ['coleira' , 20 ,70],['casinha',80, 70] , ['caminha' ,100, 70] , ['caixa de trasnporte' , 210 ,70] , ['escova' , 25 , 70] , ['kit de perfume' , 150 , 70]]
 
-#[0] produto [1] valor [2] estoque
+# [0] produto [1] valor [2] estoque
 
 HorariosD = ['10h', '12h', '14h', '16h', '18h']
 servicos = []
@@ -12,7 +17,7 @@ contador2 = 0
 contador3 = 0
 contador4 = 0
 contador5 = 0
-atendimentoP = [['banho', '$70'], ['tosa', '$40'], ['banho e tosa', '$100'], ['consulta', '$120']]
+atendimentoP = [['banho', 70], ['tosa', 40], ['banho e tosa', 100], ['consulta', 120]]
 avalicao = []
 valort = 0
 
@@ -143,7 +148,7 @@ while True:
 
                                 if achouP == 0:
                                     print('Produto não encontrado! Digite novamente.')
-
+                            print(f'o valor total da compra foi de {valorT}')
                             pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
                             while pagamento < 0 or pagamento < valorT:
                                 print('Valor inválido! Digite novamente!')
@@ -151,9 +156,12 @@ while True:
 
                             if pagamento > valorT:
                                 troco = pagamento - valorT
-                                print(f'Compra concluída com sucesso! Seu troco é: {troco}')
+                                print(f'Compra concluída com sucesso! Seu troco é: R${troco}')
+                                break
                             else:
                                 print('Pagamento realizado com sucesso!Obrigada por realizar sua compra no Pet e Cia!')
+                                break
+
                     elif opcao == 2:
                         print('realize o seu agendamento')
 
@@ -173,16 +181,15 @@ while True:
                                     break
                                 else:
                                     print('esse horaio esta cheio!!')
-                            
 
                             if horario == '12h':
                                 if contador2 < 3:
                                     contador2 += 1
                                     print('horario marcado com sucesso!!')
-                                    break 
+                                    break
                                 else:
                                     print('horario cheio!!')
-                            
+
                             if horario == '14h':
                                 if contador3 < 3:
                                     contador3 += 1
@@ -190,7 +197,7 @@ while True:
                                     break
                                 else:
                                     print('horario cheio!!')
-                                
+
                             if horario == '16h':
                                 if contador4 < 3:
                                     contador4 += 1
@@ -198,7 +205,7 @@ while True:
                                     break
                                 else:
                                     print('horaio cheio!!!')
-                                
+
                             if horario == '18h':
                                 if contador5 < 3:
                                     contador5 += 1
@@ -206,43 +213,55 @@ while True:
                                     break
                                 else:
                                     print('horario cheio!!')
+
                     elif opcao == 3:
-                        
-                        print('Bem vindo ao atendimento ao pet!!!\n escolha o que deseja!')
-                        for a in range(len(atendimentoP)):
-                            print(f'Atendimento: {atendimentoP[a][0]} | Valor {atendimentoP[a][1]}')
+                        print('Bem vindo ao atendimento ao pet!!!Escolha o que deseja!')
+                        for i in range(len(atendimentoP)):
+                            print(f'Atendimento {atendimentoP[i][0]} | Valor R${atendimentoP[i][1]}')
 
-                        quantidadeAtd = int(input('digite quantos atendimentos voce deseja realizar no seu pet: '))
+                        while True:
+                            qtd = int(input('Digite a quantidade de atendimentos que você deseja realizar: '))
+                            while qtd <= 0 or qtd > len(atendimentoP):
+                                print('Quantidade inválida! Digite novamente.')
+                                qtd = int(input('Digite a quantidade de atendimentos que você deseja realizar: '))
 
-                        for i in range(quantidadeAtd):
+                            valorT = 0
+                            q = 0
+                            while q < qtd:
+                                atendimento = input(f'Digite o nome do atendimento número {q+1}: ')
+                                achou = 0
+
+                                for i in range(len(atendimentoP)):
+                                    if atendimento.lower() == atendimentoP[i][0].lower():
+                                        print(f'Atendimento: {atendimentoP[i][0]} | Valor: R${atendimentoP[i][1]}')
+                                        valorT += atendimentoP[i][1]
+                                        achou = 1
+                                        break
+
+                                if achou == 0:
+                                    print('Atendimento não encontrado. Verifique o nome e tente novamente.')
+                                else:
+                                    q += 1
+
+                            print(f'Valor total a pagar: R${valorT}')
                             
-                            print('digite o valor do atendimento que deseja realizar: ')
-                            compra = float(input('digite o valor do produto que deseja levar:'))
-                            valort += compra #perguntar a guilherme como fazer para o usuario digitar apenas numeros da lista
 
-                        print(f'o valor total da sua compra foi de {valort}')
+                            pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
+                            while pagamento < 0 or pagamento < valorT:
+                                print('Valor inválido! Digite novamente!')
+                                pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
 
-                        pagamentoA = float(input('digite a quantia que voce vai dar: '))
+                            if pagamento > valorT:
+                                troco = pagamento - valorT
+                                print(f'Compra concluída com sucesso! Seu troco é: R${troco}')
+                                break
+                            else:
+                                print('Pagamento realizado com sucesso!Obrigada por realizar sua compra no Pet e Cia!')
+                                break
 
-                        while pagamentoA < 0 or pagamentoA < valort:
-                            print('valor invalido!Digite novamente!!')
-                            pagamentoA =  float(input('digite a quantia que voce vai dar: '))
-
-                        if pagamentoA > valort:
-                            trocoA = pagamentoA - valort
-                            print(f'compra concluida com sucesso!! seu troco foi de {trocoA}')
-                        else:
-                             print('pagamento realizado com sucesso!!')
                     elif opcao == 4:
                         print('deixe sua avaliação e no que seria possivel a gente melhorar!')
                         Av = input('deixe sua a avaliação aqui: ')
                         avalicao.append(Av)
                         print(avalicao)
                         print('avaliação enviada com sucesso!')
-            if tipo == 'administrador':
-
-                while tipo == 'administrador':
-
-           
-
-           
