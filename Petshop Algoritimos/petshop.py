@@ -1,8 +1,3 @@
-
-
-           
-
-           
 '--------------------------------------------------PROJETO DO PETSHOP------------------------------------------------'
 
 usuario = []  # [0] é o nome e [1] é a senha
@@ -17,8 +12,8 @@ contador2 = 0
 contador3 = 0
 contador4 = 0
 contador5 = 0
-atendimentoP = [['banho', 70], ['tosa', 40], ['banho e tosa', 100], ['consulta', 120]]
-avalicao = []
+atendimentoP = [['banho', 70, 3], ['tosa', 40, 3], ['banho e tosa', 100, 3], ['consulta', 120, 3]]
+avaliacao = []
 valort = 0
 
 while True:
@@ -29,6 +24,7 @@ while True:
     print('0 - Sair')
 
     opcao = int(input('digite uma opcao: '))
+
 
     if opcao == 0:
         break
@@ -91,9 +87,9 @@ while True:
 
                 while tipo == 'cliente':
                     print('1 - realizar compra')
-                    print('2 - realizar agendamento')
-                    print('3 - atendimento ao pet')
-                    print('4 - avaliação do produto ou do atendimento')
+                    print('2 - atendimento ao pet')
+                    print('3 - avaliação do produto ou atendimento')
+                    print('4 - Busca de produtos')
                     print('0 - sair')
                     opcao = int(input('digite que opcao deseja realizar: '))
 
@@ -103,7 +99,6 @@ while True:
                     elif opcao != 0 and opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4:
                         print('opcao invalida digite novamente')
                         opcao = int(input('digite que opcao deseja realizar: '))
-
                     elif opcao == 1:
                         print('Realize sua compra agora mesmo!')
                         for i in range(len(produtos)):
@@ -119,7 +114,7 @@ while True:
                             q = 0  # apenas para controlar a quantidade de produtos que o cliente quer
 
                             while q < qtd:
-                                produtoC = input(f'Digite o nome do produto número {q+1} que deseja comprar: ')
+                                produtoC = input(f'Digite o nome do produto número {q + 1} que deseja comprar: ')
                                 achouP = 0
 
                                 for i in range(len(produtos)):
@@ -163,105 +158,98 @@ while True:
                                 break
 
                     elif opcao == 2:
-                        print('realize o seu agendamento')
+                        print('escolha seu atendimento:')
+                        valort = 0
+                        for h in range(len(atendimentoP)):
+                            print(f'atendimento: {atendimentoP[h][0]} | Horários: {atendimentoP[h][1]} | Valor: R${atendimentoP[h][2]} ')
+                        print('Qual atendimento deseja realizar?')
+                        atendimento = input('digite o atendimento que deseja realizar: ').lower()
 
-                        for h in range(len(HorariosD)):
-                            print(f'horarios disponivies {HorariosD[h]}')
+                        for h in range(len(atendimentoP)):
+                            if atendimento.lower() == atendimentoP[h][0].lower():
+                                print('Atendimento encontrado com sucesso!')
+                                print('agora realize o agendamento do horario que você deseja!!')
 
-                        while True:
-                            horario = input('digite qual horario deseja escolher: ')
-                            if horario not in HorariosD:
-                                print('horario invalido!!! digite novamente')
-                                horario = input('digite qual horario deseja escolher: ')
+                                for h in range(len(HorariosD)):
+                                    print(f'horarios disponiveis {HorariosD[h]}')
 
-                            if horario == '10h':
-                                if contador1 < 3:
-                                    contador1 += 1
-                                    print('horario marcado com sucesso!!')
-                                    break
+                                horario = input('digite o horario que deseja marcar: ').strip()
+                                if horario not in HorariosD:
+                                    print('horario invalido!!')
+                                    horario = input('digite o horario que deseja marcar: ').strip()
                                 else:
-                                    print('esse horaio esta cheio!!')
+                                    if horario == '10h':
+                                        if contador1 < 3:
+                                            contador1 += 1
+                                            print('horario marcado com sucesso!')
+                                            for a in range(len(atendimentoP)):
+                                                if atendimento == atendimentoP[a][0]:
+                                                    valort += atendimentoP[a][2]
+                                                    print(f'o valor total do atendimento foi R${valort}')
+                                        else:
+                                            print('esse horario esta cheio!')
+                                            break
+                                    elif horario == '12h':
+                                        if contador2 < 3:
+                                            contador2 += 1
+                                            print('horario marcado com sucesso!')
+                                            for a in range(len(atendimentoP)):
+                                                if atendimento == atendimentoP[a][0]:
+                                                    valort += atendimentoP[a][2]
+                                                    print(f'o valor total do atendimento foi R${valort}')
+                                        else:
+                                            print('esse horario esta cheio!')
+                                            break
+                                    elif horario == '16h':
+                                        if contador3 < 3:
+                                            contador3 += 1
+                                            print('horario marcado com sucesso!')
+                                            for a in range(len(atendimentoP)):
+                                                if atendimento == atendimentoP[a][0]:
+                                                    valort += atendimentoP[a][2]
+                                                    print(f'o valor total do atendimento foi R${valort}')
+                                        else:
+                                            print('esse horario esta cheio!')
+                                            break
+                                    elif horario == '18h':
+                                        if contador4 < 3:
+                                            contador4 += 1
+                                            print('horario marcado com sucesso!')
+                                            for a in range(len(atendimentoP)):
+                                                if atendimento == atendimentoP[a][0]:
+                                                    valort += atendimentoP[a][2]
+                                                    print(f'o valor total do atendimento foi R${valort}')
+                                        else:
+                                            print('esse horario esta cheio!')
+                                            break
 
-                            if horario == '12h':
-                                if contador2 < 3:
-                                    contador2 += 1
-                                    print('horario marcado com sucesso!!')
-                                    break
-                                else:
-                                    print('horario cheio!!')
+                                    pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
+                                    while pagamento < 0 or pagamento < valort:
+                                        print('Valor inválido! Digite novamente!')
+                                        pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
 
-                            if horario == '14h':
-                                if contador3 < 3:
-                                    contador3 += 1
-                                    print('horario marcado com sucesso!!')
+                                    if pagamento >= valort:
+                                        troco = pagamento - valort
+                                        print(f'Compra concluída com sucesso! Seu troco é: R${troco}')
                                     break
-                                else:
-                                    print('horario cheio!!')
-
-                            if horario == '16h':
-                                if contador4 < 3:
-                                    contador4 += 1
-                                    print('horario marcado com sucesso!!')
-                                    break
-                                else:
-                                    print('horaio cheio!!!')
-
-                            if horario == '18h':
-                                if contador5 < 3:
-                                    contador5 += 1
-                                    print('horaio marcado com sucesso!!')
-                                    break
-                                else:
-                                    print('horario cheio!!')
+                        else:
+                            print('atendimento não encontrado')
+                        break
 
                     elif opcao == 3:
-                        print('Bem vindo ao atendimento ao pet!!!Escolha o que deseja!')
-                        for i in range(len(atendimentoP)):
-                            print(f'Atendimento {atendimentoP[i][0]} | Valor R${atendimentoP[i][1]}')
-
-                        while True:
-                            qtd = int(input('Digite a quantidade de atendimentos que você deseja realizar: '))
-                            while qtd <= 0 or qtd > len(atendimentoP):
-                                print('Quantidade inválida! Digite novamente.')
-                                qtd = int(input('Digite a quantidade de atendimentos que você deseja realizar: '))
-
-                            valorT = 0
-                            q = 0
-                            while q < qtd:
-                                atendimento = input(f'Digite o nome do atendimento número {q+1}: ')
-                                achou = 0
-
-                                for i in range(len(atendimentoP)):
-                                    if atendimento.lower() == atendimentoP[i][0].lower():
-                                        print(f'Atendimento: {atendimentoP[i][0]} | Valor: R${atendimentoP[i][1]}')
-                                        valorT += atendimentoP[i][1]
-                                        achou = 1
-                                        break
-
-                                if achou == 0:
-                                    print('Atendimento não encontrado. Verifique o nome e tente novamente.')
-                                else:
-                                    q += 1
-
-                            print(f'Valor total a pagar: R${valorT}')
-                            
-
-                            pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
-                            while pagamento < 0 or pagamento < valorT:
-                                print('Valor inválido! Digite novamente!')
-                                pagamento = float(input('Insira quanto de dinheiro você vai dar: '))
-
-                            if pagamento > valorT:
-                                troco = pagamento - valorT
-                                print(f'Compra concluída com sucesso! Seu troco é: R${troco}')
-                                break
-                            else:
-                                print('Pagamento realizado com sucesso!Obrigada por realizar sua compra no Pet e Cia!')
-                                break
-
-                    elif opcao == 4:
                         print('deixe sua avaliação e no que seria possivel a gente melhorar!')
                         Av = input('deixe sua a avaliação aqui: ')
-                        avalicao.append(Av)
-                        print(avalicao)
+                        avaliacao.append(Av)
+                        print(avaliacao)
                         print('avaliação enviada com sucesso!')
+
+                    elif opcao == 4:
+                        print('bem vindo a busca de produtos!')
+                        busca = input('digite o nome do item que deseja olhar se tem em na nossa loja: ').lower()
+                        for b in range(len(produtos)):
+                            if busca in produtos[b][0].lower():
+                                print(f'o produto {busca} ja existe em nossa loja!')
+                                break
+                        else:
+                            print(f'o produto {busca} ainda não exites em nossa loja!')
+                            
