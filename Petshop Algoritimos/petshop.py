@@ -5,13 +5,13 @@ produtos = [['ração',150 , 70] ,['shampoo' , 30 , 70] , ['condicionador' , 30 
 
 # [0] produto [1] valor [2] estoque
 listaD = []
-HorariosD = ['10h', '12h', '14h', '16h', '18h']
+HorariosD = ['10h', '12h', '16h', '18h']
 servicos = []
 contador1 = 0
 contador2 = 0
 contador3 = 0
 contador4 = 0
-contador5 = 0
+
 atendimentoP = [['banho', 70, 3], ['tosa', 40, 3], ['banho e tosa', 100, 3], ['consulta', 120, 3]]
 avaliacao = []
 valort = 0
