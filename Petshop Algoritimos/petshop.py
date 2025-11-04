@@ -4,7 +4,7 @@ usuario = []  # [0] é o nome e [1] é a senha
 produtos = [['ração',150 , 70] ,['shampoo' , 30 , 70] , ['condicionador' , 30 , 70],['brinquedo' , 20 , 70] , ['coleira' , 20 ,70],['casinha',80, 70] , ['caminha' ,100, 70] , ['caixa de trasnporte' , 210 ,70] , ['escova' , 25 , 70] , ['kit de perfume' , 150 , 70]]
 
 # [0] produto [1] valor [2] estoque
-
+listaD = []
 HorariosD = ['10h', '12h', '14h', '16h', '18h']
 servicos = []
 contador1 = 0
@@ -244,12 +244,14 @@ while True:
                         print('avaliação enviada com sucesso!')
 
                     elif opcao == 4:
-                        print('bem vindo a busca de produtos!')
-                        busca = input('digite o nome do item que deseja olhar se tem em na nossa loja: ').lower()
+                       
+                        print('bem vindo a sua lista de desejos do pet e cia!')
+                        item = input('digite o nome do item que deseja adicionar a sua lista de desejos: ').lower()
                         for b in range(len(produtos)):
-                            if busca in produtos[b][0].lower():
-                                print(f'o produto {busca} ja existe em nossa loja!')
+                            if item in produtos[b][0].lower():
+                                print(f'o produto {item} foi encontrado!')
+                                listaD.append(item)
+                                print(f'essa é sua lista de desejo atualmente {listaD}')
                                 break
                         else:
-                            print(f'o produto {busca} ainda não exites em nossa loja!')
-                            
+                            print(f'o produto {item} não existe em nossa loja!')
