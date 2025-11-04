@@ -89,7 +89,7 @@ while True:
                     print('1 - realizar compra')
                     print('2 - atendimento ao pet')
                     print('3 - avaliação do produto ou atendimento')
-                    print('4 - Busca de produtos')
+                    print('4 - lista de desjos')
                     print('0 - sair')
                     opcao = int(input('digite que opcao deseja realizar: '))
 
