@@ -312,13 +312,13 @@ while True:
                                     buscar = input('Digite o produto que deseja buscar:').lower()
                                     atentimentoPEncontrado = 0
                                     for s in atendimentoP:
-                                    if buscar.lower() in s[0].lower():
-                                        print('------SERVIÇO ENCONTRADO--------')
-                                        print(f'Nome:{s[0]}')
-                                        print(f'Preço R$:{s[1]}')
-                                        atentimentoPEncontrado = 1
-                                    if atentimentoPEncontrado == 0:
-                                        print('Serviço não encontrado')
+                                        if buscar.lower() in s[0].lower():
+                                            print('------SERVIÇO ENCONTRADO--------')
+                                            print(f'Nome:{s[0]}')
+                                            print(f'Preço R$:{s[1]}')
+                                            atentimentoPEncontrado = 1
+                                        if atentimentoPEncontrado == 0:
+                                            print('Serviço não encontrado')
 
                                 elif opcao_atendimentoP == "c":
                                     print("---------LISTA DE SERVIÇOS------------") 
