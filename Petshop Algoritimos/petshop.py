@@ -161,7 +161,7 @@ while True:
                         print('escolha seu atendimento:')
                         valort = 0
                         for h in range(len(atendimentoP)):
-                            print(f'atendimento: {atendimentoP[h][0]} | Horários: {atendimentoP[h][1]} | Valor: R${atendimentoP[h][2]} ')
+                            print(f'atendimento: {atendimentoP[h][0]} |  Valor: R${atendimentoP[h][1]} ')
                         print('Qual atendimento deseja realizar?')
                         atendimento = input('digite o atendimento que deseja realizar: ').lower()
 
@@ -173,10 +173,10 @@ while True:
                                 for h in range(len(HorariosD)):
                                     print(f'horarios disponiveis {HorariosD[h]}')
 
-                                horario = input('digite o horario que deseja marcar: ').strip()
+                                horario = input('digite o horario que deseja marcar: ')
                                 if horario not in HorariosD:
                                     print('horario invalido!!')
-                                    horario = input('digite o horario que deseja marcar: ').strip()
+                                    horario = input('digite o horario que deseja marcar: ')
                                 else:
                                     if horario == '10h':
                                         if contador1 < 3:
