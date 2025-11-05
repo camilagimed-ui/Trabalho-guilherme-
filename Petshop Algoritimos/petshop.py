@@ -408,7 +408,7 @@ while True:
                                         if buscar.lower() in p[0].lower():
                                             print('------PRODUTO ENCONTRADO--------')
                                             print(f'Nome:{p[0]}')
-                                            print(f'Preço R$:{p[2]}')
+                                            print(f'Preço R$:{p[1]}')
                                             produtoEncontrado = 1
                                     if produtoEncontrado == 0:
                                             print('Produto não encontrado')
@@ -416,7 +416,7 @@ while True:
                                 elif opcao_produtos == "c":
                                     print("---------LISTA DE PRODUTOS------------")
                                     for p in produtos: 
-                                        print(f"Serviço: {p[0]} | Preço: {p[2]}")
+                                        print(f"Serviço: {p[0]} | Preço: {p[1]}")
 
                                 elif opcao_produtos == "d":
                                     print("---------ATUALIZAR LISTA DE PRODUTOS------------")
@@ -513,7 +513,7 @@ while True:
                                             indice = int(input("Digite o indice do produto que você deseja atualizar: "))
 
                                         novaQuantidade = int(input("Digite a nova quantidade: "))
-                                        produtos[indice][3] = novaQuantidade
+                                        produtos[indice][2] = novaQuantidade
                                         print("Estoque atualizado com sucesso.")
 
                                 elif opcao == "d":
@@ -628,7 +628,5 @@ while True:
                                 else:
                                     print('Erro, escolha uma opção correta')
                                     
-
-
 
 
